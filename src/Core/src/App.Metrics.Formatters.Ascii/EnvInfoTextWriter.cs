@@ -62,12 +62,6 @@ namespace App.Metrics.Formatters.Ascii
             return default;
         }
 #endif
-
-        public void Dispose()
-        {
-            _textWriter?.Dispose();
-        }
-
         private string PaddedFormat(string label, string value)
         {
             var pad = string.Empty;

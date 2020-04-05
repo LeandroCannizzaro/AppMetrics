@@ -8,7 +8,7 @@ using App.Metrics.Infrastructure;
 
 namespace App.Metrics.Serialization
 {
-    public interface IEnvInfoWriter : IAsyncDisposable, IDisposable
+    public interface IEnvInfoWriter : IAsyncDisposable
     {
         /// <summary>
         /// Writes the specified <see cref="EnvironmentInfo"/>.

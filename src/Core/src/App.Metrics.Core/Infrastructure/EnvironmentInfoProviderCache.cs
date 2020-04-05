@@ -66,61 +66,19 @@ namespace App.Metrics.Infrastructure
 
         public string RunningEnvironment { get; }
 
-        #if NETSTANDARD2_0
-        // ReSharper disable InconsistentNaming
-        private static string GetOSPlatform()
-            // ReSharper restore InconsistentNaming
-        {
-            var platform = OSPlatform.Create("Other Platform");
-            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-            platform = isWindows ? OSPlatform.Windows : platform;
-            var isOsx = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
-            platform = isOsx ? OSPlatform.OSX : platform;
-            var isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-            platform = isLinux ? OSPlatform.Linux : platform;
-            return platform.ToString();
-        }
-#else
         // ReSharper disable InconsistentNaming
         private static string GetOSPlatform() { return Environment.OSVersion.Platform.ToString(); }
         // ReSharper restore InconsistentNaming
-#endif
 
-#if NETSTANDARD2_0
-        // ReSharper disable InconsistentNaming
-        private static string GetProcessArchitecture()
-            // ReSharper restore InconsistentNaming
-        {
-            return RuntimeInformation.ProcessArchitecture.ToString();
-        }
-#else
         // ReSharper disable InconsistentNaming
         private static string GetProcessArchitecture() { return Environment.Is64BitProcess ? "X64" : "X86"; }
         // ReSharper restore InconsistentNaming
-#endif
 
-#if NETSTANDARD2_0
-        // ReSharper disable InconsistentNaming
-        private static string GetOSArchitecture()
-            // ReSharper restore InconsistentNaming
-        {
-            return RuntimeInformation.OSArchitecture.ToString();
-        }
-#else
         // ReSharper disable InconsistentNaming
         private static string GetOSArchitecture() { return Environment.Is64BitOperatingSystem ? "X64" : "X86"; }
         // ReSharper restore InconsistentNaming
-#endif
 
-#if NETSTANDARD2_0
         // ReSharper disable InconsistentNaming
-        private static string GetOSVersion()
-            // ReSharper restore InconsistentNaming
-        {
-            return RuntimeInformation.OSDescription;
-        }
-#else
-// ReSharper disable InconsistentNaming
         private static string GetOSVersion()
         {
             // DEVNOTE: Not ideal but it's a pain to get detect the actual OS Version
@@ -128,19 +86,9 @@ namespace App.Metrics.Infrastructure
         }
 
         // ReSharper restore InconsistentNaming
-#endif
 
-#if NETSTANDARD2_0
         // ReSharper disable InconsistentNaming
-        private static string GetFrameworkDescription()
-            // ReSharper restore InconsistentNaming
-        {
-            return RuntimeInformation.FrameworkDescription;
-        }
-#else
-        // ReSharper disable InconsistentNaming
-        private static string GetFrameworkDescription() { return AppDomain.CurrentDomain.SetupInformation.TargetFrameworkName; }
+        private static string GetFrameworkDescription() { return RuntimeInformation.FrameworkDescription; }
         // ReSharper restore InconsistentNaming
-#endif
     }
 }

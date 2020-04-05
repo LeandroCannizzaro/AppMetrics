@@ -72,10 +72,12 @@ namespace Microsoft.AspNetCore.Mvc.Internal
                 // It's hack to catch TypeLoadException
                 Func<IList<IRouter>, ActionDescriptor[]> func = routersList =>
                 {
-                    var attributeRouteHandler = routersList.FirstOrDefault(r => r.GetType().Name == nameof(MvcAttributeRouteHandler))
-                        as MvcAttributeRouteHandler;
+                    // var attributeRouteHandler = routersList.FirstOrDefault(r => r.GetType().Name == nameof(MvcAttributeRouteHandler))
+                    //     as MvcAttributeRouteHandler;
                 
-                    return attributeRouteHandler?.Actions;
+                    // return attributeRouteHandler?.Actions;
+
+                    return null;
                 };
                 
                 return func(routers);
